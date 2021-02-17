@@ -1,0 +1,19 @@
+{
+  "name": "Filem",
+  "version": "0.1.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^11.2.3"
+  },
+  "dependencies": {
+    "custom-electron-titlebar": "^3.2.6"
+  }
+}
