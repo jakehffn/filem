@@ -12,6 +12,15 @@
         .titlebar {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
+        span.menu-item-icon, span.menu-item-check {
+            display: none;
+        }
+        span.action-label {
+            padding-left: 2em !important;
+        }
+        span.keybinding {
+            padding-right: 2em !important;
+        }
     </style>
 </head>
 
@@ -21,7 +30,7 @@
     Chromium <span id="chrome-version"></span>,
     and Electron <span id="electron-version"></span>.
 
-    <script src="src/renderer.js"></script>
+    <script src="src/render.js"></script>
 </body>
 
 </html>
