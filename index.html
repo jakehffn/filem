@@ -4,33 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <title>Filem</title>
-    <style>
-        
-        :root {
-            font-family: Arial, Helvetica, sans-serif;
-        }
-        .titlebar {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        span.menu-item-icon, span.menu-item-check {
-            display: none;
-        }
-        span.action-label {
-            padding-left: 2em !important;
-        }
-        span.keybinding {
-            padding-right: 2em !important;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
+
+    <script src="src/render.js" defer></script>
+    <!-- <script src="src/util/files.js" defer></script> -->
+    <script src="src/pathFinder.js" defer></script>
 </head>
 
 <body>
-    <h1>Hello World!</h1>
-    We are using Node.js <span id="node-version"></span>,
-    Chromium <span id="chrome-version"></span>,
-    and Electron <span id="electron-version"></span>.
-
-    <script src="src/render.js"></script>
+    <div id="path-finder-container">
+        <input type="text" id="path-finder">
+    </div>
+    <div id="files-container"></div>
 </body>
 
 </html>

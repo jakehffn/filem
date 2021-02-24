@@ -1,0 +1,96 @@
+:root 
+{
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #292828;
+    color: #d4be98;
+}
+
+::-webkit-scrollbar 
+{ 
+    width: 0px; 
+}
+
+input 
+{
+    border-top-style: none;
+    border-right-style: none;
+    border-left-style: none;
+    border-bottom-style: none;
+
+    padding: 0;
+}
+
+input:focus 
+{
+    outline: none;
+}
+
+/* Title-bar begin*/
+.titlebar 
+{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #d4be98 !important;
+}
+
+.window-icon
+{
+    background-color: #d4be98 !important;
+}
+
+span.menu-item-icon, span.menu-item-check 
+{
+    display: none;
+}
+
+span.action-label 
+{
+    padding-left: 2em !important;
+}
+
+span.keybinding 
+{
+    padding-right: 2em !important;
+}
+/* Title-bar end */
+
+#container-after-titlebar 
+{
+    overflow: hidden;
+}
+
+/* Path finder begin */
+#path-finder 
+{
+    width: 100%;
+    background-color: #292828;
+    color: #d4be98;
+    font-size: 13px;
+}
+#path-finder-container 
+{
+    width: 100%;
+
+    background-color: #292828;
+    position: absolute;
+
+    padding-bottom: 4px;
+    padding-left: 4px;
+}
+/* Path finder end */
+
+#files-container 
+{
+    position: absolute;
+    top: 22px;
+
+    width: 100%;
+    height: calc(100% - 22px);
+
+    font-size: 13px;
+    overflow-y: scroll;
+}
+
+.file 
+{
+    margin: 0;
+}
