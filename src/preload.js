@@ -15,17 +15,17 @@ window.addEventListener('DOMContentLoaded', () => {
         replaceText(`${type}-version`, process.versions[type]);
     }
     
-    document.getElementById("path-finder").defaultValue = "C:\\";
+    document.getElementById('path-finder').defaultValue = "C:\\";
 })
 
 window.readdir = function(dir) {
     files.readdir(dir, function(f) {
-        let fileList = document.getElementById("files-container");
-        fileList.innerHTML = "";
+        let fileList = document.getElementById('files-container');
+        fileList.innerHTML = '';
 
         f.forEach(file => {
-            let node = document.createElement("p");
-            node.classList.add("file")
+            let node = document.createElement('p');
+            node.classList.add('file')
             node.appendChild(document.createTextNode(file));
             fileList.appendChild(node);
         });
