@@ -1,4 +1,4 @@
-import customTitlebar from 'custom-electron-titlebar'
+import { Titlebar, Color } from 'custom-electron-titlebar'
 import files from "./util/files"
 
 declare global {
@@ -7,24 +7,15 @@ declare global {
 
 declare global {
     interface HTMLElement { 
-        defaultValue: any;
+        defaultValue: string;
         
     }
 }
 
 window.addEventListener('DOMContentLoaded', () => {
-    new customTitlebar.Titlebar({
-        backgroundColor: customTitlebar.Color.fromHex('#292828')
+    new Titlebar({
+        backgroundColor: Color.fromHex('#292828')
     })
-
-    const replaceText = (selector: string, text: string) => {
-        const element = document.getElementById(selector);
-        if (element) element.innerText = text;
-    }
-
-    for (const type of ['chrome', 'node', 'electron']) {
-        replaceText(`${type}-version`, process.versions[type]);
-    }
     
     document.getElementById('path-finder').defaultValue = "C:\\";
 })

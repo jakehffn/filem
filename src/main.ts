@@ -13,13 +13,13 @@ function createWindow() {
 		height: 600,
 		frame: false,
 		webPreferences: {
-		preload: path.join(__dirname, 'src/preload.ts'),
+		preload: path.join(__dirname, './preload.js'),
 		enableRemoteModule: true,
 		nodeIntegration: false,
 		}
 	})
   
-  	mainWindow.loadFile('index.html')
+  	mainWindow.loadFile('./index.html')
 
 	// Open devTools
 	mainWindow.webContents.openDevTools()
