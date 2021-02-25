@@ -1,7 +1,6 @@
-const path = require('path');
-const fs = require('fs');
+import fs from 'fs';
 
-readdir = (dir, fn) => {
+const readdir = (dir: fs.PathLike, fn: (arg0: string[]) => void) => {
     fs.readdir(dir, function(err, f) {
         if (err) {
             return console.log('Unable to scan directory: ' + err);
@@ -11,4 +10,4 @@ readdir = (dir, fn) => {
     })
 }
 
-module.exports = { readdir };
+export default { readdir };

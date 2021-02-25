@@ -1,5 +1,6 @@
 /assets
 /.vscode
+/build
 
 #npm stuff
 /node_modules

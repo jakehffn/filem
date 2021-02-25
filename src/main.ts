@@ -1,8 +1,8 @@
-const { app, BrowserWindow, Menu } = require('electron')
-const path = require('path')
-const template = require('./src/menu')
+import { app, BrowserWindow, Menu } from 'electron'
+import path from 'path'
+import template from './menu'
 
-let mainWindow
+let mainWindow: BrowserWindow
 
 const menu = Menu.buildFromTemplate(template)
 Menu.setApplicationMenu(menu)
@@ -13,13 +13,13 @@ function createWindow() {
 		height: 600,
 		frame: false,
 		webPreferences: {
-		preload: path.join(__dirname, 'src/preload.js'),
+		preload: path.join(__dirname, './preload.js'),
 		enableRemoteModule: true,
 		nodeIntegration: false,
 		}
 	})
   
-  	mainWindow.loadFile('index.html')
+  	mainWindow.loadFile('./index.html')
 
 	// Open devTools
 	mainWindow.webContents.openDevTools()
