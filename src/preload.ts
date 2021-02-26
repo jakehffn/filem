@@ -23,7 +23,7 @@ window.addEventListener('DOMContentLoaded', () => {
         backgroundColor: Color.fromHex('#292828')
     })
     
-    document.getElementById('path-finder').defaultValue = "C:\\";
+    document.getElementById('command-line').defaultValue = "C:\\";
 })
 
 window.displayDir = function(dir: any) {

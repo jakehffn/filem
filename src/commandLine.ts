@@ -1,5 +1,5 @@
-document.getElementById('path-finder').addEventListener('keyup', (evt) => {
-    let path = (<HTMLInputElement>document.getElementById('path-finder')).value;
+document.getElementById('command-line').addEventListener('keyup', (evt) => {
+    let path = (<HTMLInputElement>document.getElementById('command-line')).value;
 
     var evt = (evt) ? evt : null;
     if(evt.key === "Tab") {

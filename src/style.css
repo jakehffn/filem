@@ -59,16 +59,16 @@ span.keybinding
 }
 
 /* Path finder begin */
-#path-finder 
+#command-line 
 {
     width: 100%;
     background-color: #292828;
     color: #d4be98;
     font-size: 13px;
 }
-#path-finder-container 
+#command-line-container 
 {
-    width: 100%;
+    width: calc(100% - 4px);
 
     background-color: #292828;
     position: absolute;
@@ -82,6 +82,8 @@ span.keybinding
 {
     position: absolute;
     top: 22px;
+
+    padding: 4px;
 
     width: 100%;
     height: calc(100% - 22px);
