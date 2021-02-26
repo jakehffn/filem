@@ -5,8 +5,10 @@ import cmd from 'node-cmd';
 declare global {
     interface Window { 
         displayDir: any;
-        currentDir: any; 
-        currentDirs: any;
+        dir: any; 
+
+        setInDir: any;
+        inDir: any;
     }
 }
 
@@ -17,7 +19,7 @@ declare global {
     }
 }
 
-window.currentDir = 'C:\\';
+window.dir = 'C:\\';
 
 window.addEventListener('DOMContentLoaded', () => {
     new Titlebar({
@@ -28,8 +30,8 @@ window.addEventListener('DOMContentLoaded', () => {
 })
 
 window.displayDir = function() {
-    if (files.isDir(window.currentDir)) {
-        files.getDir(window.currentDir, function(f: any[]) {
+    files.ifDir(window.dir, function() {
+        files.getDir(window.dir, function(f: any[]) {
             let fileList = document.getElementById('files-container');
             fileList.innerHTML = '';
 
@@ -42,5 +44,5 @@ window.displayDir = function() {
             
             console.log(f);
         }) 
-    }
+    })
 }

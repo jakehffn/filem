@@ -6,7 +6,9 @@ const getDir = (dir, fn) => {
             return console.log('ERROR: ' + err);
         } else {
             console.log(f);
-            fn(f.split('\n'));
+
+            let formattedFiles = formatInDir(f.split('\n'));
+            fn(formattedFiles);
         }
     });
 }
@@ -15,20 +17,27 @@ const tabCompletion = (dir, fn) => {
     
 }
 
-const isDir = (dir) => {
-    let command: string = 'IF exist "' + dir + '" (echo true) else (echo false)';
-    console.log(command);
+const formatInDir = (inDir) => {
+    inDir.splice(0, 4);
 
-    let is: string = cmd.runSync(command).data;
-    is = is.replace(/\s+/g, "");
+    inDir.pop();
+    inDir.pop();
+    inDir.pop();
 
-    if (is === 'true') {
-        console.log(true);
-        return true;
-    } else {
-        console.log(false);
-        return false;
-    }
+    return inDir;
 }
 
-export default { getDir, tabCompletion, isDir };
+const ifDir = (dir, fn) => {
+    let command: string = 'IF exist "' + dir + '" (echo true) else (echo false)';
+
+    cmd.run(command, function(err, data, stderr) {
+        data = data.replace(/\s+/g, "");
+        if (data === 'true') {
+            fn(dir)
+        } else {
+            console.log("ifDir(): Not a Dir");
+        }
+    })
+}
+
+export default { getDir, tabCompletion, ifDir };

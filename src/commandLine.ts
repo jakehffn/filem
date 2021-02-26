@@ -2,9 +2,8 @@ document.getElementById('command-line').addEventListener('keydown', (evt) => {
 
     var evt = (evt) ? evt : null;
     if(evt.key === "Tab") {
-        const str = window.currentDir.split("\\").pop();
+        const str = window.dir.split("\\").pop();
 
-        
         // Prevents tab from going to next element
         evt.preventDefault();
 
@@ -13,7 +12,6 @@ document.getElementById('command-line').addEventListener('keydown', (evt) => {
 })
 
 document.getElementById('command-line').addEventListener('keyup', (evt) => {
-    window.currentDir = (<HTMLInputElement>document.getElementById('command-line')).value;
-
+    window.dir = (<HTMLInputElement>document.getElementById('command-line')).value;
     window.displayDir();
 })
