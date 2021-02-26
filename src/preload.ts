@@ -2,7 +2,9 @@ import { Titlebar, Color } from 'custom-electron-titlebar'
 import files from "./util/files"
 
 declare global {
-    interface Window { readdir: any; }
+    interface Window { 
+        displayDir: any; 
+    }
 }
 
 declare global {
@@ -20,7 +22,7 @@ window.addEventListener('DOMContentLoaded', () => {
     document.getElementById('path-finder').defaultValue = "C:\\";
 })
 
-window.readdir = function(dir: any) {
+window.displayDir = function(dir: any) {
     files.readdir(dir, function(f: any[]) {
         let fileList = document.getElementById('files-container');
         fileList.innerHTML = '';
