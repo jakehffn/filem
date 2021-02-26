@@ -1,13 +1,14 @@
-import fs from 'fs';
+import cmd from 'node-cmd';
 
-const readdir = (dir: fs.PathLike, fn: (arg0: string[]) => void) => {
-    fs.readdir(dir, function(err, f) {
+const getDir = (dir, fn) => {
+    cmd.run('cd '+ dir + ' && dir', function(err, f, stderr) {
         if (err) {
-            return console.log('Unable to scan directory: ' + err);
+            return console.log('ERROR: ' + err);
         } else {
-            fn(f);
+            console.log(f);
+            fn(f.split('\n'));
         }
-    })
+    });
 }
 
-export default { readdir };
+export default { getDir };

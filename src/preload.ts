@@ -1,9 +1,11 @@
-import { Titlebar, Color } from 'custom-electron-titlebar'
-import files from "./util/files"
+import { Titlebar, Color } from 'custom-electron-titlebar';
+import files from "./util/files";
+import cmd from 'node-cmd';
 
 declare global {
     interface Window { 
-        displayDir: any; 
+        displayDir: any;
+        process: any; 
     }
 }
 
@@ -14,6 +16,8 @@ declare global {
     }
 }
 
+window.process = cmd.runSync('cd \\');
+
 window.addEventListener('DOMContentLoaded', () => {
     new Titlebar({
         backgroundColor: Color.fromHex('#292828')
@@ -23,7 +27,7 @@ window.addEventListener('DOMContentLoaded', () => {
 })
 
 window.displayDir = function(dir: any) {
-    files.readdir(dir, function(f: any[]) {
+    files.getDir(dir, function(f: any[]) {
         let fileList = document.getElementById('files-container');
         fileList.innerHTML = '';
 
