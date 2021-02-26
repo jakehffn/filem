@@ -14,26 +14,42 @@ Pre-req: Install Node and required packages
 - Start Electron app with ```npm start```
 - Copy index.html and style.css to build directory
 
-### example .vscode tasks.json:
+### example .vscode tasks.json to use for default build task:
 ```
 {
-	"version": "2.0.0",
+	"version": "1.0.0",
 	"tasks": [
 		{
-			"type": "npm",
-			"script": "start",
-			"label": "npm: start",
-			"detail": "electron ./build/.",
+			"label": "Build",
 			"group": {
 				"kind": "build",
 				"isDefault": true
 			},
-			"dependsOn":["Move Style and Index", "TypeScript Build"]
+			"dependsOn":["Move Index", "Move Style", 
+				"TypeScript Build", "npm: start"],
+			"dependsOrder": "sequence"
 		},
 		{
-			"label": "Move Style and Index",
+			"type": "npm",
+			"script": "start",
+			"label": "npm: start",
+			"detail": "electron ./build/."
+		},
+		{
+			"label": "Move Index",
 			"type": "shell",
-			"command": "copy /Y .\\src\\index.html .\\build\\index.html && copy /Y .\\src\\style.css .\\build\\style.css"
+			"command": "copy",
+			"args": ["/Y", 
+				"${workspaceFolder}\\src\\index.html", 
+				"${workspaceFolder}\\build\\index.html"]
+		},
+		{
+			"label": "Move Style",
+			"type": "shell",
+			"command": "copy",
+			"args": ["/Y", 
+				"${workspaceFolder}\\src\\style.css", 
+				"${workspaceFolder}\\build\\style.css"]
 		},
 		{
 			"label": "TypeScript Build",
