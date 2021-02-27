@@ -62,7 +62,7 @@ span.keybinding
 /* Path finder begin */
 #command-line 
 {
-    max-width: 100%;
+    width: 100%;
     background-color: #292828;
     color: #d4be98;
     font-size: 13px;
