@@ -1,14 +1,14 @@
 import { Titlebar, Color } from 'custom-electron-titlebar';
 import files from "./util/files";
-import cmd from 'node-cmd';
 
 declare global {
     interface Window { 
-        displayDir: any;
         dir: any; 
-
-        setInDir: any;
+        inputDir: any;
         inDir: any;
+
+        displayDir: any;
+        tabCompletion: any;
     }
 }
 
@@ -20,6 +20,7 @@ declare global {
 }
 
 window.dir = 'C:\\';
+window.inputDir = 'C:\\';
 
 window.addEventListener('DOMContentLoaded', () => {
     new Titlebar({
@@ -30,7 +31,11 @@ window.addEventListener('DOMContentLoaded', () => {
 })
 
 window.displayDir = function() {
-    files.ifDir(window.dir, function() {
+    files.ifDir(window.inputDir, function() {
+
+        // If inputDir is valid, set as current dir and display
+        window.dir = window.inputDir;
+
         files.getDir(window.dir, function(f: any[]) {
             let fileList = document.getElementById('files-container');
             fileList.innerHTML = '';
@@ -38,11 +43,15 @@ window.displayDir = function() {
             f.forEach((file: string) => {
                 let node = document.createElement('p');
                 node.classList.add('file')
-                node.appendChild(document.createTextNode(file));
+                node.appendChild(document.createTextNode(file[3]));
                 fileList.appendChild(node);
             });
-            
-            console.log(f);
         }) 
+    })
+}
+
+window.tabCompletion = function() {
+    files.tabCompletion(window.inputDir, window.dir, function(tabComplete: string) {
+        (<HTMLInputElement>document.getElementById('command-line')).value = tabComplete;
     })
 }
