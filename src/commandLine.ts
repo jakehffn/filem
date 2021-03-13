@@ -4,6 +4,11 @@ document.getElementById('command-line').addEventListener('keydown', (evt) => {
     if(evt.key === "Tab") {
         // Prevents tab from going to next element
         evt.preventDefault();
+    } else if (evt.key === "Enter") {
+        window.inputDir = (<HTMLInputElement>document.getElementById('command-line')).value;
+        window.enterParse();
+    } else {
+        window.tabPrefix = ''
     }
 })
 

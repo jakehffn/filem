@@ -6,15 +6,22 @@ const getDir = (dir, fn) => {
         if (err) {
             return console.log('getDir(): ' + err);
         } else {
-            let formattedFiles = formatInDir(f.split('\n'));
-            fn(formattedFiles);
+            let within = formatInDir(f.split('\n'));
+            fn(within);
         }
     });
 }
 
-const tabCompletion = (inputDir, currentDir, fn) => {
-    getDir(currentDir, function() {
-
+const tabCompletion = (tabPrefix, inputDir, currentDir, fn) => {
+    let prefix = inputDir.split('\\')
+    inputDir = prefix.pop();
+    console.log(tabPrefix)
+    getDir(currentDir, function(within) {
+        let possible = within.filter((item) => 
+            item[3].substring(0, inputDir.length).toLowerCase() === tabPrefix.toLowerCase())
+        if (possible.length != 0) {
+            fn(prefix.join('\\') + '\\' + possible[0][3]);
+        }
     })
 }
 

@@ -6,9 +6,12 @@ declare global {
         dir: any; 
         inputDir: any;
         inDir: any;
+        tabPrefix: string;
 
         displayDir: any;
         tabCompletion: any;
+        updateInDir: any;
+        enterParse: any;
     }
 }
 
@@ -51,7 +54,23 @@ window.displayDir = function() {
 }
 
 window.tabCompletion = function() {
-    files.tabCompletion(window.inputDir, window.dir, function(tabComplete: string) {
+    if (window.tabPrefix === '') {
+        window.tabPrefix = window.inputDir.split('\\').pop();
+    }
+
+    files.tabCompletion(window.tabPrefix, window.inputDir, window.dir, function(tabComplete: string) {
         (<HTMLInputElement>document.getElementById('command-line')).value = tabComplete;
+        window.inputDir = tabComplete;
+    })
+}
+
+window.enterParse = function() {
+    files.ifDir(window.inputDir, function() {
+        if (window.inputDir.slice(-1) !== '\\'){
+            let newDir = window.inputDir + '\\';
+            (<HTMLInputElement>document.getElementById('command-line')).value = newDir;
+            window.inputDir = newDir;
+        }
+        
     })
 }
