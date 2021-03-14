@@ -12,15 +12,25 @@ const getDir = (dir, fn) => {
     });
 }
 
-const tabCompletion = (tabPrefix, inputDir, currentDir, fn) => {
+const tabCompletion = (tabPrefix: string, inputDir, currentDir, fn) => {
     let prefix = inputDir.split('\\')
     inputDir = prefix.pop();
     console.log(tabPrefix)
+
     getDir(currentDir, function(within) {
+        
         let possible = within.filter((item) => 
-            item[3].substring(0, inputDir.length).toLowerCase() === tabPrefix.toLowerCase())
+            item[3].substring(0, tabPrefix.length).toLowerCase() === tabPrefix.toLowerCase().trim());
+        let currPos = possible.findIndex((item) => 
+            item[3].trim() === inputDir.trim());
+        
+        // console.log(currPos, currentDir, inputDir, tabPrefix, possible, within)
         if (possible.length != 0) {
-            fn(prefix.join('\\') + '\\' + possible[0][3]);
+            if (currPos === possible.length - 1) {
+                fn(prefix.join('\\') + '\\' + possible[0][3]);
+            } else {
+                fn(prefix.join('\\') + '\\' + possible[currPos + 1][3]);
+            }
         }
     })
 }
@@ -49,6 +59,10 @@ const formatInDir = (inDir) => {
 
         indexed.push(result);
     });
+
+    if (indexed[0][3].trim() === ".") {
+        indexed.splice(0, 2);
+    }
 
     return indexed;
 }

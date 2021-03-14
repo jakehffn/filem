@@ -8,7 +8,7 @@ document.getElementById('command-line').addEventListener('keydown', (evt) => {
         window.inputDir = (<HTMLInputElement>document.getElementById('command-line')).value;
         window.enterParse();
     } else {
-        window.tabPrefix = ''
+        window.tabPrefix = '\\'
     }
 })
 

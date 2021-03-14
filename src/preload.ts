@@ -24,6 +24,7 @@ declare global {
 
 window.dir = 'C:\\';
 window.inputDir = 'C:\\';
+window.tabPrefix = '\\'
 
 window.addEventListener('DOMContentLoaded', () => {
     new Titlebar({
@@ -54,7 +55,7 @@ window.displayDir = function() {
 }
 
 window.tabCompletion = function() {
-    if (window.tabPrefix === '') {
+    if (window.tabPrefix === '\\') {
         window.tabPrefix = window.inputDir.split('\\').pop();
     }
 
@@ -70,6 +71,8 @@ window.enterParse = function() {
             let newDir = window.inputDir + '\\';
             (<HTMLInputElement>document.getElementById('command-line')).value = newDir;
             window.inputDir = newDir;
+
+            window.tabPrefix = '\\';
         }
         
     })
