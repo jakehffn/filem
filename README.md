@@ -15,7 +15,7 @@ Pre-req: Install Node and required packages
 - Copy index.html and style.css to build directory
 
 ### example .vscode tasks.json to use for default build task:
-```
+```json
 {
 	"version": "1.0.0",
 	"tasks": [

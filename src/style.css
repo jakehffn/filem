@@ -55,24 +55,26 @@ span.keybinding
 
 #container-after-titlebar 
 {
+    width: 100%;
     overflow: hidden;
 }
 
 /* Path finder begin */
-#path-finder 
+#command-line 
 {
     width: 100%;
     background-color: #292828;
     color: #d4be98;
     font-size: 13px;
 }
-#path-finder-container 
+#command-line-container 
 {
     width: 100%;
 
     background-color: #292828;
     position: absolute;
 
+    box-sizing: border-box;
     padding-bottom: 4px;
     padding-left: 4px;
 }
@@ -82,6 +84,9 @@ span.keybinding
 {
     position: absolute;
     top: 22px;
+
+    box-sizing: border-box;
+    padding: 4px;
 
     width: 100%;
     height: calc(100% - 22px);
