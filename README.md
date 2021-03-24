@@ -1,8 +1,11 @@
 # filem
 A better file manager and explorer for Windows
 
-## (Future) Features
-- MultiPane file explorer
+## Current Features
+- Single panel file explorer
+
+## Future Features
+- MultiPanel file explorer
 - Simple UI
 - Integrated command line
 - Abilility to disable and replace windows taskbar

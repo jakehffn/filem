@@ -15,7 +15,6 @@ const getDir = (dir, fn) => {
 const tabCompletion = (tabPrefix: string, inputDir, currentDir, fn) => {
     let prefix = inputDir.split('\\')
     inputDir = prefix.pop();
-    console.log(tabPrefix)
 
     getDir(currentDir, function(within) {
         

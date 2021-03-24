@@ -12,6 +12,7 @@ declare global {
         tabCompletion: any;
         updateInDir: any;
         enterParse: any;
+        updateInputDir: any;
     }
 }
 
@@ -20,10 +21,6 @@ declare global {
         defaultValue: string;
     }
 }
-
-window.dir = 'C:\\';
-window.inputDir = 'C:\\';
-window.tabPrefix = '\\'
 
 window.addEventListener('DOMContentLoaded', () => {
     new Titlebar({
@@ -64,6 +61,7 @@ window.tabCompletion = function() {
     })
 }
 
+// Given current input is a valid directory, add a slash if there is none
 window.enterParse = function() {
     files.ifDir(window.inputDir, function() {
         if (window.inputDir.slice(-1) !== '\\'){
@@ -76,3 +74,12 @@ window.enterParse = function() {
         
     })
 }
+
+window.updateInputDir = function() {
+    window.inputDir = (<HTMLInputElement>document.getElementById('command-line')).value;
+}
+
+window.dir = 'C:\\';
+window.inputDir = 'C:\\';
+window.tabPrefix = '\\';
+window.displayDir();
