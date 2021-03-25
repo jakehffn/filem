@@ -13,6 +13,7 @@ declare global {
         updateInDir: any;
         enterParse: any;
         updateInputDir: any;
+        updateClientInput: any;
     }
 }
 
@@ -41,9 +42,24 @@ window.displayDir = function() {
             fileList.innerHTML = '';
 
             f.forEach((file: string) => {
+                let fileName = file[3];
                 let node = document.createElement('p');
                 node.classList.add('file')
-                node.appendChild(document.createTextNode(file[3]));
+                node.onclick = function() {
+                    let newDir = window.dir;
+
+                    if (newDir.slice(-1) === '\\') {
+                        newDir += fileName;
+                    } else {
+                        newDir += '\\' + fileName;
+                    }
+                    
+                    
+                    window.inputDir = newDir;
+                    window.updateClientInput(newDir);
+                    window.displayDir();
+                }
+                node.appendChild(document.createTextNode(fileName));
                 fileList.appendChild(node);
             });
         }) 
@@ -56,7 +72,7 @@ window.tabCompletion = function() {
     }
 
     files.tabCompletion(window.tabPrefix, window.inputDir, window.dir, function(tabComplete: string) {
-        (<HTMLInputElement>document.getElementById('command-line')).value = tabComplete;
+        window.updateClientInput(tabComplete);
         window.inputDir = tabComplete;
     })
 }
@@ -66,7 +82,7 @@ window.enterParse = function() {
     files.ifDir(window.inputDir, function() {
         if (window.inputDir.slice(-1) !== '\\'){
             let newDir = window.inputDir + '\\';
-            (<HTMLInputElement>document.getElementById('command-line')).value = newDir;
+            window.updateClientInput(newDir);
             window.inputDir = newDir;
 
             window.tabPrefix = '\\';
@@ -77,6 +93,10 @@ window.enterParse = function() {
 
 window.updateInputDir = function() {
     window.inputDir = (<HTMLInputElement>document.getElementById('command-line')).value;
+}
+
+window.updateClientInput = function(newInput) {
+    (<HTMLInputElement>document.getElementById('command-line')).value = newInput;
 }
 
 window.dir = 'C:\\';

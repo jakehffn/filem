@@ -98,4 +98,13 @@ span.keybinding
 .file 
 {
     margin: 0;
+    padding-top: 1px;
+    padding-bottom: 1px;
+
+    cursor: pointer;
+}
+
+.file:hover
+{
+    background-color: #38343270;
 }
